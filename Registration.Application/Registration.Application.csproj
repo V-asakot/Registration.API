@@ -8,8 +8,14 @@
 
   <ItemGroup>
     <Folder Include="Behaviors\" />
-    <Folder Include="Commands\CreateUser\" />
-    <Folder Include="Commands\SetUserRegion\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Registration.Domain\Registration.Domain.csproj" />
   </ItemGroup>
 
 </Project>
