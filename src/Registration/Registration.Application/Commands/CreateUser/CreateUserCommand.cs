@@ -12,5 +12,7 @@ namespace Registration.Application.Commands.CreateUser
         public string Password { get; set; }
         [Required]
         public string PasswordConfirmation { get; set; }
+
+        //так же упоминался чекбокс,но его нет смысла посылать на бек
     }
 }
