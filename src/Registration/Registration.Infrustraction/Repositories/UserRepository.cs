@@ -39,7 +39,7 @@ namespace Registration.Infrustraction.Repositories
                 return Result.Fail<string>("Failed setting user region");
             user.Region = region;
             await _context.SaveChangesAsync();
-            return Result.Ok();
+            return Result<Region>.Ok();
         }
     }
 }

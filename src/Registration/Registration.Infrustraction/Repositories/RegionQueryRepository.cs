@@ -13,7 +13,7 @@ using System.Data;
 
 namespace Registration.Infrustraction.Repositories
 {
-    internal class RegionQueryRepository: QueryRepository, IRegionQueryRepository
+    public class RegionQueryRepository: QueryRepository, IRegionQueryRepository
     {
         public RegionQueryRepository(DapperDataContext context) : base(context)
         {
