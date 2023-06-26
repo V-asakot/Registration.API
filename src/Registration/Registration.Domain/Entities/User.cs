@@ -9,11 +9,12 @@ namespace Registration.Domain.Entities
 {
     public class User : IdentityUser
     {
-        public Region Region { get; set; }
+        public Region? Region { get; set; }
 
         public User(string email)
         {
            Email = email;
+           UserName = email;
         }
     }
 }

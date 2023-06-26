@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Registration.Domain.Entities;
 using Registration.Domain.Primitives;
 using Registration.Domain.Repositories;
@@ -35,11 +36,11 @@ namespace Registration.Infrustraction.Repositories
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user is null)
-                //тут еще бы логирование с конкретикой по ошибке,что нельзя посылать на фронт
                 return Result.Fail<string>("Failed setting user region");
+
             user.Region = region;
             await _context.SaveChangesAsync();
-            return Result.Ok();
+            return Result<Region>.Ok();
         }
     }
 }

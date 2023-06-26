@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Registration.Domain.Primitives
 {
@@ -11,21 +7,23 @@ namespace Registration.Domain.Primitives
     public class Result
     {
         public bool Success { get; set; }
-        public string Error { get; set; }
+        public IEnumerable<string> Errors { get; set; }
 
-        protected Result(bool success, string error)
+        protected Result(bool success, IEnumerable<string> errors)
         {
             Success = success;
-            Error = error;
+            Errors = errors;
         }
+        public static Result FailMany(IEnumerable<string> errors) => new(false, errors);
+        public static Result Fail(string error) => new(false, new string[]{ error });
 
-        public static Result Fail(string error) => new(false, error);
+        public static Result Ok() => new(true, Array.Empty<string>());
 
-        public static Result Ok() => new(true, String.Empty);
+        public static Result<T> FailMany<T>(IEnumerable<string> errors) => new(default, false, errors);
 
-        public static Result<T> Fail<T>(string error) => new(default, true, String.Empty);
+        public static Result<T> Fail<T>(string error) => new(default, false, new string[] { error });
 
-        public static Result<T> Ok<T>(T result) => new(result, true, String.Empty);
+        public static Result<T> Ok<T>(T result) => new(result, true, Array.Empty<string>());
 
     }
 
@@ -33,9 +31,10 @@ namespace Registration.Domain.Primitives
     {
         public T Data { get; set; }
 
-        protected internal Result(T res, bool success, string error) : base(success, error)
+        public Result(T res, bool success, IEnumerable<string> errors) : base(success, errors)
         {
             Data = res;
         }
+        
     }
 }
