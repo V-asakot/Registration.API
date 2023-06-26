@@ -11,7 +11,6 @@ using FluentValidation;
 using static System.Net.Mime.MediaTypeNames;
 using MediatR;
 using Registration.Application.Behaviors;
-using Registration.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +39,6 @@ var assembly = typeof(MediatorEntryPoint).Assembly;
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddValidatorsFromAssembly(assembly);
-builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 var app = builder.Build();
 

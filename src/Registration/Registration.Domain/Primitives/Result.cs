@@ -14,11 +14,12 @@ namespace Registration.Domain.Primitives
             Success = success;
             Errors = errors;
         }
-        public static Result Fail(IEnumerable<string> errors) => new(false, errors);
+        public static Result FailMany(IEnumerable<string> errors) => new(false, errors);
         public static Result Fail(string error) => new(false, new string[]{ error });
 
         public static Result Ok() => new(true, Array.Empty<string>());
-        public static Result<T> Fail<T>(IEnumerable<string> errors) => new(default, false, errors);
+
+        public static Result<T> FailMany<T>(IEnumerable<string> errors) => new(default, false, errors);
 
         public static Result<T> Fail<T>(string error) => new(default, false, new string[] { error });
 
@@ -34,5 +35,6 @@ namespace Registration.Domain.Primitives
         {
             Data = res;
         }
+        
     }
 }

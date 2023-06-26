@@ -12,7 +12,7 @@ namespace Registration.Application.Commands.CreateUser
     {
         public CreateUserValidation()
         {
-            RuleFor(x => x.Name).NotEmpty().EmailAddress();
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
             RuleFor(x => x.Password).Equal(x => x.PasswordConfirmation);
             RuleFor(x => x.Password).SetInheritanceValidator(v =>
                 v.Add(new PasswordValidation()));

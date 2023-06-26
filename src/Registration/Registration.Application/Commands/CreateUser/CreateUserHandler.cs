@@ -20,7 +20,7 @@ namespace Registration.Application.Commands.CreateUser
 
         public async Task<Result<string>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new User(request.Name);
+            var user = new User(request.Email);
             var res = await _repository.SignUpAsync(user, request.Password);
             return res;
         }
