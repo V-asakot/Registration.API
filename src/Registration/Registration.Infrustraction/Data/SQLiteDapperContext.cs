@@ -20,7 +20,7 @@ namespace Registration.Infrustraction.Data
 
         public override IDbConnection CreateConnection()
         {
-            return new SqliteConnection(Configuration.GetConnectionString("WebApiDatabase"));
+            return new SqliteConnection(Configuration.GetConnectionString("DefaultConnection"));
         }
     }
 }

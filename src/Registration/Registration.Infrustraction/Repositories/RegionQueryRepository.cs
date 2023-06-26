@@ -28,7 +28,7 @@ namespace Registration.Infrustraction.Repositories
         {
             try
             {
-                var query = "SELECT * FROM REGIONS WHERE Id = @Id";
+                var query = "SELECT * FROM 'Regions' WHERE Id = @Id";
                 var parameters = new DynamicParameters();
                 parameters.Add("Id", id, DbType.Int64);
 

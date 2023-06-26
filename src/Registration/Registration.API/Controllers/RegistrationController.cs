@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Registration.Application.Commands.CreateUser;
+using Registration.Application.Commands.SetRegion;
 using Registration.Domain.Primitives;
 
 namespace Registration.API.Controllers
@@ -16,8 +17,15 @@ namespace Registration.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<Result<string>> GetProducts(CreateUserCommand command)
+        [HttpPost("createUser")]
+        public async Task<Result<string>> CreateUser(CreateUserCommand command)
+        {
+            var res = await _mediator.Send(command);
+            return res;
+        }
+
+        [HttpPost("setUserRegion")]
+        public async Task<Result> SetUserRegion(SetRegionCommand command)
         {
             var res = await _mediator.Send(command);
             return res;
