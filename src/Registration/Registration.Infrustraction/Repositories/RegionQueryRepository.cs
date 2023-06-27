@@ -35,7 +35,7 @@ namespace Registration.Infrustraction.Repositories
                 using (var connection = CreateConnection())
                 {
                     var res = await connection.QueryFirstOrDefaultAsync<Region>(query, parameters);
-                    return Result.Ok(res);
+                    return res is not null ? Result.Ok(res) : Result.Fail<Region>("Region not found");
                 }
             }
             catch (Exception exp)
